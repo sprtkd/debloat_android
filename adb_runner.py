@@ -1,22 +1,17 @@
 from subprocess import PIPE, run
-
-def runcommand(command):
-    result = run(command, stdout=PIPE, stderr=PIPE, universal_newlines=True, shell=True)
-    return result.stdout, result.stderr
-
-def stringdiff(a, b):
-    counter=0
-    u=zip(a,b)
-    for i,j in u:
-        if i != j:
-            counter+=1
-    return counter
+from utils import stringdiff
 
 DEVICES_LIST = "adb devices"
 ADB = "adb"
 LIST_DEVICE_OUT = 'List of devices attached'
 ADB_SHELL_LIST_PACKAGES = "adb shell pm list packages"
 ADB_LIST_PACKAGE_START = "package:"
+
+COMMAND_PREPEND = "platform-tools/"
+
+def runcommand(command):
+    result = run(command, stdout=PIPE, stderr=PIPE, universal_newlines=True, shell=True, cwd=COMMAND_PREPEND)
+    return result.stdout, result.stderr
 
 def check_adb():
     _, err = runcommand(ADB)
@@ -48,7 +43,3 @@ def get_app_list(filter_str = None):
     if filter_str != None:
         out_lines = list(filter(lambda x: filter_str in x, out_lines))
     return out_lines
-
-
-
-print(get_app_list('lfeh'))
