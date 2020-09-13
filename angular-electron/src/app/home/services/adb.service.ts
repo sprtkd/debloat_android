@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ErrorHandlerService } from './error-handler.service';
 import { Observable } from 'rxjs';
 import { CommonData } from './../models/models';
-import { ADB_CHECK_URL, ADB_DEVICES_URL } from './../models/apis_urls';
+import { ADB_CHECK_URL, ADB_DEVICES_URL, ADB_PACKAGES_URL } from './../models/apis_urls';
 import { catchError } from 'rxjs/operators';
 
 @Injectable({
@@ -23,6 +23,14 @@ export class AdbService {
 
   getDeviceList(): Observable<CommonData> {
     return this.http.get<CommonData>(ADB_DEVICES_URL)
+      .pipe(
+        catchError(this.errorHandlerService.handleError)
+      );
+
+  }
+
+  getDevicePackageList(): Observable<CommonData> {
+    return this.http.get<CommonData>(ADB_PACKAGES_URL)
       .pipe(
         catchError(this.errorHandlerService.handleError)
       );

@@ -1,0 +1,7 @@
+<div>
+    <div *ngFor="let package of packageList" class="package-entry">
+        <span class="circle" [ngStyle]="{ 'border-color': hashCode(getCompanyName(package)) }">
+            {{getCompanyName(package)}}</span>
+        {{package}}
+    </div>
+</div>

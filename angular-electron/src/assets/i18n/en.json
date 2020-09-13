@@ -3,7 +3,8 @@
       "HOME": {
           "TITLE": "Android Debloater",
           "ADBCHECK": "Check ADB",
-          "GETDEVICE": "Get Device"
+          "GETDEVICE": "Get Device",
+          "GETPACKAGES": "Get Package List"
       }
   }
 }

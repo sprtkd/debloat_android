@@ -7,4 +7,8 @@ Using direct adb calls to automate the listing, logging and removal/disabling of
 
 ## Whitelist for common vendors to be added soon
 
+# Screenshot
+
+![Alt text](screenshot.jpg "Screenshot")
+
 

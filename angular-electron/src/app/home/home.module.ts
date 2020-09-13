@@ -5,9 +5,11 @@ import { HomeRoutingModule } from './home-routing.module';
 
 import { HomeComponent } from './home.component';
 import { SharedModule } from '../shared/shared.module';
+import { PhonepicComponent } from './common/phonepic/phonepic.component';
+import { PackageTableComponent } from './common/package-table/package-table.component';
 
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [HomeComponent, PhonepicComponent, PackageTableComponent],
   imports: [CommonModule, SharedModule, HomeRoutingModule]
 })
 export class HomeModule {}

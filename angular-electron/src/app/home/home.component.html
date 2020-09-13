@@ -1,6 +1,8 @@
 <div class="container">
   <h1 class="title">
     {{ 'PAGES.HOME.TITLE' | translate }}
+    &nbsp;&nbsp;
+    <div class="spinner" *ngIf="isSpinning"></div>
   </h1>
   <div class="top-bar">
     &nbsp; &nbsp;
@@ -12,18 +14,43 @@
     <button (click)="get_adb_status()" style="width: 120px;">{{ 'PAGES.HOME.ADBCHECK' | translate }}</button>
 
     &nbsp; &nbsp;
-    <button [disabled]="adb_status==false" (click)="get_adb_device()" style="width: 120px;">{{ 'PAGES.HOME.GETDEVICE' | translate }}</button>
+    <button [disabled]="adb_status==false" (click)="get_adb_device()"
+      style="width: 120px;">{{ 'PAGES.HOME.GETDEVICE' | translate }}</button>
+    &nbsp;&nbsp;
+    <input type="text" placeholder="Search Package.." class="searchinput">
+    <button [disabled]="adb_status==false" (click)="get_adb_device()" style="width: 50px;">
+      <i class="fa fa-search"></i>
+    </button>
+    &nbsp; &nbsp;
+    <button [disabled]="adb_status==false" (click)="get_adb_packages()"
+      style="width: 150px;">{{ 'PAGES.HOME.GETPACKAGES' | translate }}</button>
   </div>
-  <div class="device-div">
-    <h3 class="title">Device Info</h3>
-    <div *ngIf="deviceInfo">
-      <div class="entry">ID: {{deviceInfo.id}}</div>
-      <div class="entry">Product: {{deviceInfo.product}}</div>
-      <div class="entry">Model: {{deviceInfo.model}}</div>
+  <div style="display: flex;">
+    <div class="device-div">
+      <h3 class="title">Device Info</h3>
+      <div *ngIf="deviceInfo">
+        <div class="entry">ID: {{deviceInfo.id}}</div>
+        <div class="entry">Product: {{deviceInfo.product}}</div>
+        <div class="entry">Model: {{deviceInfo.model}}</div>
+        <div class="entry" *ngIf="deviceInfo.imgurl">
+          <app-phonepic [url]="deviceInfo.imgurl"></app-phonepic>
+        </div>
+      </div>
+      <div *ngIf="deviceInfo==null">
+        <div class="entry">No Device Connected!</div>
+      </div>
     </div>
-    <div *ngIf="deviceInfo==null">
-      <div class="entry">No Device Connected!</div>
+    <div class="packages-div">
+      <h2 class="title">Package List &nbsp; 
+        <span *ngIf="packageList!=null">[{{packageList.length}} apps]</span>
+      </h2>
+      <br>
+      <div class="entry" *ngIf="packageList==null">No Packages</div>
+      <div *ngIf="packageList!=null">
+        <app-package-table [packageList]="packageList"></app-package-table>
+      </div>
     </div>
   </div>
+
 
 </div>

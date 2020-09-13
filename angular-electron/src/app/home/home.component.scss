@@ -2,11 +2,34 @@
     color: white;
     margin: 0;
     padding: 20px 20px;
+    display: flex;
 }
 
 .top-bar {
     display: flex;
-    justify-content: flex-start;
+    width: 100%;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.spinner {
+    padding: 10px;
+    width: 15px;
+    height: 15px;
+    background-color: #eb7100;
+    animation-name: spin;
+    animation-duration: 5000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 button {
@@ -63,20 +86,42 @@ button {
 }
 
 .device-div {
-    background-color: rgba(75, 75, 75, 0.753);
+    background-color: rgba(49, 49, 49, 0.801);
     border-radius: 10px;
-    width: 280px;
+    min-width: 280px;
     min-height: 180px;
+    max-height: 450px;
     margin: 10px;
     margin-top: 20px;
     color: white;
     padding: 10px;
+    float: left;
+}
 
-    .entry{
-        padding: 10px;
-        margin: 10px;
-        border-radius: 5px;
-        color: rgb(255, 255, 255);
-        background-color: rgba(109, 109, 109, 0.568);
-    }
+.packages-div {
+    background-color: rgba(49, 49, 49, 0.801);
+    border-radius: 10px;
+    min-width: 400px;
+    flex: 1;
+    max-height: 300px;
+    min-height: 480px;
+    margin: 10px;
+    margin-top: 20px;
+    color: white;
+    padding: 10px;
+    float: right;
+    overflow-y: auto;
+}
+
+.entry {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    background-color: rgba(109, 109, 109, 0.568);
+}
+
+.searchinput {
+    flex: 1;
+    box-sizing: border-box;
 }

@@ -1,3 +1,5 @@
+from get_image import search_mobile
+
 def stringdiff(a, b):
     counter=0
     u=zip(a,b)
@@ -31,10 +33,15 @@ def device_details_parser(data):
             product = i[len('product:'):]
         if 'model:' in i:
             model = i[len('model:'):]
+    try:
+        img = search_mobile(model)
+    except:
+        img = None
 
     dataret = {'id': datalist[0],
     'product': product,
-    'model': model
+    'model': model,
+    'imgurl': img
     }
     return dataret
 

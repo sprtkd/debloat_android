@@ -5,5 +5,6 @@ export class CommonData {
 export class DeviceInfo {
     id: string;
     product: string;
-    model: string
+    model: string;
+    imgurl: string;
 }
