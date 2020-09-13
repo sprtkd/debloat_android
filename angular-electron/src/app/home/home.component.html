@@ -1,0 +1,29 @@
+<div class="container">
+  <h1 class="title">
+    {{ 'PAGES.HOME.TITLE' | translate }}
+  </h1>
+  <div class="top-bar">
+    &nbsp; &nbsp;
+    <div class="led-box">
+      <div class="led-green" *ngIf="adb_status"></div>
+      <div class="led-red" *ngIf="!adb_status"></div>
+    </div>
+    &nbsp; &nbsp;
+    <button (click)="get_adb_status()" style="width: 120px;">{{ 'PAGES.HOME.ADBCHECK' | translate }}</button>
+
+    &nbsp; &nbsp;
+    <button [disabled]="adb_status==false" (click)="get_adb_device()" style="width: 120px;">{{ 'PAGES.HOME.GETDEVICE' | translate }}</button>
+  </div>
+  <div class="device-div">
+    <h3 class="title">Device Info</h3>
+    <div *ngIf="deviceInfo">
+      <div class="entry">ID: {{deviceInfo.id}}</div>
+      <div class="entry">Product: {{deviceInfo.product}}</div>
+      <div class="entry">Model: {{deviceInfo.model}}</div>
+    </div>
+    <div *ngIf="deviceInfo==null">
+      <div class="entry">No Device Connected!</div>
+    </div>
+  </div>
+
+</div>

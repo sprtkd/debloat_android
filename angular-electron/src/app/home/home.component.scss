@@ -1,0 +1,82 @@
+.title {
+    color: white;
+    margin: 0;
+    padding: 20px 20px;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: flex-start;
+}
+
+button {
+    color: rgb(255, 255, 255) !important;
+    font-weight: 750;
+    text-transform: uppercase;
+    background: #ff6600;
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    border: none;
+    transition: all 0.4s ease 0s;
+
+    &:hover {
+        background: rgb(255, 143, 16);
+        cursor: pointer;
+        color: #ffffff !important;
+        -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+        -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+        box-shadow: 5px 40px -10px rgba(0, 0, 0, 0.57);
+        transition: all 0.4s ease 0s;
+    }
+
+    &:disabled {
+        background: rgb(119, 64, 0);
+        cursor: not-allowed;
+        color: #999999 !important;
+        -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+        -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+        box-shadow: 5px 40px -10px rgba(0, 0, 0, 0.57);
+        transition: all 0.4s ease 0s;
+    }
+}
+
+.led-box {
+    height: 30px;
+    margin: 10px 0;
+}
+
+.led-green {
+    width: 24px;
+    height: 24px;
+    background-color: #abff00;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px, #89ff00 0 2px 12px;
+}
+
+.led-red {
+    width: 24px;
+    height: 24px;
+    background-color: #f00;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 12px;
+}
+
+.device-div {
+    background-color: rgba(75, 75, 75, 0.753);
+    border-radius: 10px;
+    width: 280px;
+    min-height: 180px;
+    margin: 10px;
+    margin-top: 20px;
+    color: white;
+    padding: 10px;
+
+    .entry{
+        padding: 10px;
+        margin: 10px;
+        border-radius: 5px;
+        color: rgb(255, 255, 255);
+        background-color: rgba(109, 109, 109, 0.568);
+    }
+}

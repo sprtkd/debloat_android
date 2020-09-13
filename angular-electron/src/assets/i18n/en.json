@@ -1,0 +1,9 @@
+{
+  "PAGES": {
+      "HOME": {
+          "TITLE": "Android Debloater",
+          "ADBCHECK": "Check ADB",
+          "GETDEVICE": "Get Device"
+      }
+  }
+}

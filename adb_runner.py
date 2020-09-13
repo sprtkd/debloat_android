@@ -1,11 +1,12 @@
 from subprocess import PIPE, run
-from utils import stringdiff
+from utils import *
 
-DEVICES_LIST = "adb devices"
+DEVICES_LIST = "adb devices -l"
 ADB = "adb"
 LIST_DEVICE_OUT = 'List of devices attached'
 ADB_SHELL_LIST_PACKAGES = "adb shell pm list packages"
 ADB_LIST_PACKAGE_START = "package:"
+ADB_SHELL_PACKAGE_DETAILS_PREPEND = "adb shell dumpsys package "
 
 COMMAND_PREPEND = "platform-tools/"
 
@@ -31,7 +32,7 @@ def get_device_id():
         return None
     if stringdiff(out_lines[0], LIST_DEVICE_OUT) > 2:
         return None
-    return out_lines[1]
+    return device_details_parser(out_lines[1])
 
 def get_app_list(filter_str = None):
     out, err = runcommand(ADB_SHELL_LIST_PACKAGES)
@@ -43,3 +44,14 @@ def get_app_list(filter_str = None):
     if filter_str != None:
         out_lines = list(filter(lambda x: filter_str in x, out_lines))
     return out_lines
+
+def get_app_details(app_name, checkPresent = True):
+    if(checkPresent):
+        applist = get_app_list(app_name)
+        if (applist == None) or app_name not in applist:
+            return None
+    out, err = runcommand(ADB_SHELL_PACKAGE_DETAILS_PREPEND + app_name)
+    if len(err) > 0:
+        return None
+    return app_dtls_obj_parser(out)
+    
