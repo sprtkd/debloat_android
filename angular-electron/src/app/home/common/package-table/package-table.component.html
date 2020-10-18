@@ -1,7 +1,43 @@
 <div>
+
+    <ngx-smart-modal #myModal identifier="myModal">
+        <div class="modal-styled">
+            <h1>Info</h1>
+            <p>
+                {{det | json}}
+            </p>
+        </div>
+        <button (click)="myModal.close()">Close</button>
+    </ngx-smart-modal>
     <div *ngFor="let package of packageList" class="package-entry">
         <span class="circle" [ngStyle]="{ 'border-color': hashCode(getCompanyName(package)) }">
             {{getCompanyName(package)}}</span>
         {{package}}
+        <span class="action-items">
+            <button class="action-button" (click)="copyToClipboardWrap(package)">
+                <i class="fa fa-files-o"></i>
+                <span class="tooltiptext">Copy</span>
+            </button>
+            <button class="action-button" (click)="getInfo(package)">
+                <i class="fa fa-info-circle"></i>
+                <span class="tooltiptext">Info</span>
+            </button>
+            <button class="action-button" (click)="googleSearch(package)">
+                <i class="fa fa-google"></i>
+                <span class="tooltiptext">Google Search</span>
+            </button>
+            <button class="action-button">
+                <i class="fa fa-minus-circle"></i>
+                <span class="tooltiptext">Disable</span>
+            </button>
+            <button class="action-button" (click)="uninstallApp(package)">
+                <i class="fa fa-trash"></i>
+                <span class="tooltiptext">Uninstall</span>
+            </button>
+            <button class="action-button">
+                <i class="fa fa-flag"></i>
+                <span class="tooltiptext">Flag</span>
+            </button>
+        </span>
     </div>
 </div>

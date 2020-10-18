@@ -7,6 +7,8 @@ LIST_DEVICE_OUT = 'List of devices attached'
 ADB_SHELL_LIST_PACKAGES = "adb shell pm list packages"
 ADB_LIST_PACKAGE_START = "package:"
 ADB_SHELL_PACKAGE_DETAILS_PREPEND = "adb shell dumpsys package "
+ADB_UNINSTALL_USER_LEVEL_PREPEND = "adb shell pm uninstall -k --user 0 "
+ADB_DISABLE_USER_LEVEL_PREPEND = "adb shell pm disable-user --user 0 "
 
 COMMAND_PREPEND = "platform-tools/"
 
@@ -54,4 +56,18 @@ def get_app_details(app_name, checkPresent = True):
     if len(err) > 0:
         return None
     return app_dtls_obj_parser(out)
-    
+
+def uninstall_app(app_name, checkPresent = True):
+    if(checkPresent):
+        applist = get_app_list(app_name)
+        if (applist == None) or app_name not in applist:
+            return {'uninstalled': False, 'message': 'Not present'}
+    out, err = runcommand(ADB_UNINSTALL_USER_LEVEL_PREPEND + app_name)
+    if len(err) > 0:
+        return {'uninstalled': False, 'message': 'Error Occurred: '+err}
+    isUninstalled = uninstall_msg_parser(out)
+    if(isUninstalled):
+        retMsg = 'Successfully Uninstalled: '
+    else:
+        retMsg = 'Failed: '
+    return {'uninstalled': isUninstalled, 'message': retMsg+out}

@@ -45,3 +45,9 @@ def device_details_parser(data):
     }
     return dataret
 
+def uninstall_msg_parser(msg):
+    if msg.startswith('Success'):
+        return True
+    else:
+        return False
+

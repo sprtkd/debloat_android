@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CommonData, DeviceInfo } from './models/models';
 import { AdbService } from './services/adb.service';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,6 +14,8 @@ export class HomeComponent implements OnInit {
   adb_status: Boolean = false;
   deviceInfo: DeviceInfo = null;
   packageList: string[] = null;
+  searchVal: string = "";
+  filteredPackageList: string[] = null;
   constructor(private router: Router, private adbService: AdbService) { }
 
   ngOnInit(): void { }
@@ -55,6 +58,7 @@ export class HomeComponent implements OnInit {
     this.adbService.getDevicePackageList()
       .subscribe((data: CommonData) => {
         this.packageList = data.data;
+        this.filteredPackageList = this.packageList;
       },
         error => {
           const options = {
@@ -65,6 +69,13 @@ export class HomeComponent implements OnInit {
           this.spinnerStop();
         });
 
+  }
+
+  filterPackages(searchText: string) {
+    if(this.packageList == null) {
+      return null;
+    }
+    this.filteredPackageList = this.packageList.filter(s => s.includes(searchText),[]);
   }
 
   spinnerStart() {

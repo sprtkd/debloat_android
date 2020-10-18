@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ErrorHandlerService } from './error-handler.service';
 import { Observable } from 'rxjs';
 import { CommonData } from './../models/models';
-import { ADB_CHECK_URL, ADB_DEVICES_URL, ADB_PACKAGES_URL } from './../models/apis_urls';
+import { ADB_CHECK_URL, ADB_DEVICES_URL, ADB_PACKAGES_URL, ADB_PACKAGE_ACTION_URL } from './../models/apis_urls';
 import { catchError } from 'rxjs/operators';
 
 @Injectable({
@@ -34,6 +34,27 @@ export class AdbService {
       .pipe(
         catchError(this.errorHandlerService.handleError)
       );
+  }
 
+  getPackageDetails(packageStr: string): Observable<CommonData> {
+
+    return this.http.get<CommonData>(ADB_PACKAGE_ACTION_URL, {
+      headers:
+        new HttpHeaders().set('Package-Name', packageStr)
+    })
+      .pipe(
+        catchError(this.errorHandlerService.handleError)
+      );
+  }
+
+  uninstallPackage(packageStr: string): Observable<CommonData> {
+
+    return this.http.delete<CommonData>(ADB_PACKAGE_ACTION_URL, {
+      headers:
+        new HttpHeaders().set('Package-Name', packageStr)
+    })
+      .pipe(
+        catchError(this.errorHandlerService.handleError)
+      );
   }
 }
