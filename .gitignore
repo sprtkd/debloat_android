@@ -5,6 +5,9 @@
 # For adb folder
 platform-tools/
 
+# releases
+releases/
+
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/

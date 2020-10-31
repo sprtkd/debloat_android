@@ -1,7 +1,12 @@
-# debloat_android
-
 # Debloat Your Android
 Debloat Your Android Phone the easy way
+
+Pre Release available:
+https://github.com/sprtkd/debloat_android/releases/tag/v0.0.1
+
+<a href="https://github.com/sprtkd/debloat_android/releases/download/v0.0.1/debloat_android_winx64.zip" download>Download 0.0.1</a>
+
+
 
 **Use at Your Own Risk**
 This app can potentially brick your device in its current state
