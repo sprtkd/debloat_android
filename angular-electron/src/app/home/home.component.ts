@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonData, DeviceInfo } from './models/models';
 import { AdbService } from './services/adb.service';
-
+import { version } from './../../../package.json';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +10,7 @@ import { AdbService } from './services/adb.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  public appVersion: string = version;
   isSpinning: Boolean = false;
   adb_status: Boolean = false;
   deviceInfo: DeviceInfo = null;
@@ -17,6 +18,10 @@ export class HomeComponent implements OnInit {
   searchVal: string = "";
   filteredPackageList: string[] = null;
   constructor(private router: Router, private adbService: AdbService) { }
+
+  resetSearch() {
+    this.searchVal = "";
+  }
 
   ngOnInit(): void { }
 
@@ -33,6 +38,7 @@ export class HomeComponent implements OnInit {
           new Notification('ADB Update Failed', options);
         }).add(() => {
           this.spinnerStop();
+          this.resetSearch();
         });
 
   }
@@ -50,6 +56,7 @@ export class HomeComponent implements OnInit {
           new Notification('ADB Update Failed', options);
         }).add(() => {
           this.spinnerStop();
+          this.resetSearch();
         });
   }
 
@@ -67,6 +74,7 @@ export class HomeComponent implements OnInit {
           new Notification('ADB Update Failed', options);
         }).add(() => {
           this.spinnerStop();
+          this.resetSearch();
         });
 
   }

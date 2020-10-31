@@ -25,7 +25,7 @@
     <button [disabled]="adb_status==false || deviceInfo==null" (click)="get_adb_packages()"
       style="width: 150px;">{{ 'PAGES.HOME.GETPACKAGES' | translate }}</button>
   </div>
-  <div style="display: flex;">
+  <div style="display: flex;" *ngIf="adb_status">
     <div class="device-div">
       <h3 class="title">Device Info</h3>
       <div *ngIf="deviceInfo">
@@ -38,6 +38,7 @@
       </div>
       <div *ngIf="deviceInfo==null">
         <div class="entry">No Device Connected!</div>
+        <div class="entry">Press "Get Device"</div>
       </div>
     </div>
     <div class="packages-div">
@@ -55,6 +56,19 @@
       </div>
     </div>
   </div>
-
-
+  <div class="disclaimer-div" *ngIf="!adb_status">
+    <h1>Make sure:</h1>
+    <ol>
+      <li>Developer Options Enabled.</li>
+      <li>USB Debugging Enabled.</li>
+      <li>Phone connected over USB.</li>
+      <li>ADB Driver Installed.</li>
+    </ol>
+    <h1>Disclaimer:</h1>
+    <h2>This Software can *BRICK* your device!</h2>
+    <h3>Use it at your own risk.</h3>
+    <br>
+    <h4>Version: {{appVersion}}</h4>
+    <h5>Powered by Electron</h5>
+  </div>
 </div>

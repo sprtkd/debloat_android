@@ -1,24 +1,19 @@
 {
-  "name": "angular-electron",
-  "version": "8.0.4",
-  "description": "Angular 10 with Electron (Typescript + SASS + Hot Reload)",
-  "homepage": "https://github.com/maximegris/angular-electron",
+  "name": "debloat_android",
+  "version": "0.0.1",
+  "description": "Debloat your Android",
+  "homepage": "https://github.com/sprtkd",
   "author": {
+    "name": "Suprotik Dey",
+    "email": "supdey1@gmail.com"
+  },
+  "thanks": {
     "name": "Maxime GRIS",
     "email": "maxime.gris@gmail.com"
   },
   "keywords": [
-    "angular",
-    "angular 10",
-    "electron",
-    "nodejs",
-    "typescript",
-    "spectron",
-    "eslint",
-    "sass",
-    "windows",
-    "mac",
-    "linux"
+    "android",
+    "bloat"
   ],
   "main": "main.js",
   "private": true,
